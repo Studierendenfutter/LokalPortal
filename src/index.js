@@ -1,46 +1,30 @@
 import React from "react";
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
-import Funnel from "./pages/Funnel/Funnel";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Confirm from "./pages/Confirm";
-import Settings from "./pages/Settings";
-import Cancel from "./pages/Cancel";
 import { hydrate, render } from "react-dom";
-import Canteens from "./pages/Canteens";
-import Meals from "./pages/Meals";
-import Share from "./pages/Share/Share";
-import Pause from "./pages/Pause";
+import Home from "./pages/Home";
+import CreateMeal from "./pages/Meal/Create";
+import PatchMeal from "./pages/Meal/Patch";
+import Navbar from "./components/Navbar";
+import "semantic-ui-css/semantic.min.css";
 
 const App = () => (
   <React.StrictMode>
     <Router>
-      <Switch>
-        <Route path="/confirm">
-          <Confirm />
-        </Route>
-        <Route path="/cancel">
-          <Cancel />
-        </Route>
-        <Route path="/pause">
-          <Pause />
-        </Route>
-        <Route path="/settings">
-          <Settings />
-        </Route>
-        <Route path="/funnel">
-          <Funnel />
-        </Route>
-        <Route path="/canteens">
-          <Canteens />
-        </Route>
-        <Route path="/meals">
-          <Meals />
-        </Route>
-        <Route path="/share">
-          <Share />
-        </Route>
-      </Switch>
+      <Navbar>
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route exact path="/meals/create">
+            <CreateMeal />
+          </Route>
+          <Route exact path="/meals/:mealId">
+            <PatchMeal />
+          </Route>
+        </Switch>
+      </Navbar>
     </Router>
   </React.StrictMode>
 );

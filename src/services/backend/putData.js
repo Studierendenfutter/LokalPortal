@@ -1,5 +1,7 @@
 import Axios from "axios";
+import getHeaders from "../utils/getHeaders";
 
 export default function putData(url, data) {
-  return Axios.put(url, data);
+  const headers = getHeaders();
+  return Axios.put(url, data, { headers });
 }

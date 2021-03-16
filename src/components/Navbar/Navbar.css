@@ -1,0 +1,35 @@
+.sf-canteen-user-topbar {
+  position: fixed;
+  top: 0;
+  height: 70px;
+  width: 100%;
+  z-index: 20;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5em;
+  background: #094249;
+  color: white;
+}
+
+.sf-canteen-user-content {
+  margin-top: 70px;
+  padding: 1em;
+}
+
+.sf-canteen-user-topbar-heading {
+  color: white;
+  text-decoration: none;
+}
+
+.sf-canteen-user-topbar-img {
+  height: 50px;
+  margin-right: 20px;
+}
+
+.sf-canteen-user-topbar-left {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
