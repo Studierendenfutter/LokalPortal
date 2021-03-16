@@ -1,17 +1,22 @@
 import React, { useState } from "react";
-import { Form, Header, Button, Segment } from "semantic-ui-react";
+import { Form, Header, Button, Segment, Message } from "semantic-ui-react";
 import postCanteenUserLogin from "../../services/backend/postCanteenUserLogin";
 
 export default function LoginForm() {
   const [loginData, setLoginData] = useState({ password: "", email: "" });
-  
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
+
   const changeForm = ({ target: { value, name } }) => {
     setLoginData({ ...loginData, [name]: value });
   };
 
   const login = async () => {
-    await postCanteenUserLogin(loginData);
-    window.location.reload();
+    const err = await postCanteenUserLogin(loginData);
+    if (!err) window.location.reload();
+    else {
+      setShowErrorMessage(true);
+      setTimeout(() => setShowErrorMessage(false), 5000);
+    }
   };
 
   return (
@@ -19,6 +24,11 @@ export default function LoginForm() {
       <Segment>
         <Form>
           <Header>Login</Header>
+          {showErrorMessage && (
+            <Message negative>
+              Bitte versuche Sie eine andere E-Mail oder ein anderes Password .
+            </Message>
+          )}
           <Form.Input
             label="E-Mail"
             type="text"

@@ -13,7 +13,10 @@ export default function MealForm({ meal, setMeal }) {
   }
 
   const handleMealUpdate = () => {
-    setMeal(localMeal);
+    let price = parseFloat(localMeal.price.replace(",", ".")).toString();
+    console.log(price);
+    setLocalMeal({ ...localMeal, price });
+    setMeal({ ...localMeal, price });
   };
 
   const handleFormChange = ({ target: { name, value } }) => {

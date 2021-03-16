@@ -24,7 +24,7 @@ export default function CreateMeal() {
     <div>
       <Header size="large">Gericht erstellen</Header>
       <Message info>
-        Tragen Sie den Namen und den Preis des Gerichtes ein und klicken sie
+        Tragen Sie den Namen und Preis des Gerichtes ein und klicken sie
         anschließend auf "Erstellen".
       </Message>
       <MealForm meal={meal} setMeal={setMeal} />

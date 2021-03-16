@@ -61,7 +61,7 @@ export default function PatchMeal() {
         {mealHasMealTypes && mealHasMealTypes.length === 0 && (
           <Message warning>
             Diesem Gericht wurde noch keine Kategorie hinzugefügt. Es braucht
-            mindestens eine, um im Lunchletter angezeigt zu werden.{" "}
+            mindestens eine Kategorie, um im Lunchletter angezeigt zu werden.{" "}
           </Message>
         )}
         <div>
