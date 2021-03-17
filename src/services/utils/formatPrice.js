@@ -1,3 +1,5 @@
-export default function (price) {
-  return price.toFixed(2).replace(".", ",");
+export default function formatPrice(price) {
+  return parseFloat(price + "")
+    .toFixed(2)
+    .replace(".", ",");
 }

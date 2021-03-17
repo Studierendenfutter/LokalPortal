@@ -6,8 +6,9 @@ export default function useCanteenMeals(filter = {}) {
 
   useEffect(() => {
     async function fetch() {
-      const canteens = await getMeals(filter);
-      setCanteenMeals(canteens);
+      const canteenMeals = await getMeals(filter);
+      console.log(canteenMeals);
+      setCanteenMeals(canteenMeals[0].meals);
     }
     fetch();
     /* eslint-disable */

@@ -23,12 +23,8 @@ export default function Navbar({ children }) {
         </Link>
         {authToken ? (
           <div>
-            <Button
-              inverted
-              color="white"
-              onClick={() => history.push("/meals/create")}
-            >
-              Gericht hinzufügen
+            <Button inverted color="white" onClick={() => history.push("/")}>
+              Übersicht
             </Button>
             <Button
               inverted

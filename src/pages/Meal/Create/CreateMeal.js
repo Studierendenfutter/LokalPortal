@@ -5,6 +5,8 @@ import MealForm from "../../../components/MealForm/MealForm";
 import getDateString from "../../../services/utils/getDateString";
 import postMeal from "../../../services/backend/postMeal";
 import useCanteen from "../../../services/hooks/useCanteen";
+import CategoryForm from "../../../components/CategoryForm/CategoryForm";
+import Container from "../../../components/Container/Container";
 
 export default function CreateMeal() {
   const history = useHistory();
@@ -14,34 +16,56 @@ export default function CreateMeal() {
     price: "",
   });
   const [canteen] = useCanteen();
-
+  const [globalMeal, setGlobalMeal] = useState();
   const createMeal = async () => {
     const _meal = await postMeal({ ...meal, canteen_id: canteen.id });
-    history.push("/meals/" + _meal.id);
+    setGlobalMeal(_meal);
   };
 
   return (
-    <div>
-      <Header size="large">Gericht erstellen</Header>
-      <Message info>
-        Tragen Sie den Namen und Preis des Gerichtes ein und klicken sie
-        anschließend auf "Erstellen".
-      </Message>
-      <MealForm meal={meal} setMeal={setMeal} />
-      <br />
-      <Button icon="send" positive onClick={createMeal}>
-        Erstellen
-      </Button>
-      <Button
-        icon="send"
-        negative
-        basic
-        onClick={() => {
-          history.push("/");
-        }}
-      >
-        Abbrechen
-      </Button>
-    </div>
+    <Container>
+      {" "}
+      <Header size="large">
+        {globalMeal
+          ? `"${globalMeal.name}" Kategorien hinzufügen`
+          : `Neues Gericht anlegen`}
+      </Header>
+      {!globalMeal && (
+        <>
+          <Message info>
+            Tragen Sie den Namen und Preis des Gerichtes ein. Wählen sie das
+            Datum aus an dem das Gericht erscheinen soll und klicken sie
+            anschließend auf "Erstellen".
+          </Message>
+          <MealForm meal={meal} setMeal={setMeal} />
+          <br />
+          <Button icon="send" positive onClick={createMeal}>
+            Gericht Erstellen
+          </Button>
+          <Button
+            icon="send"
+            negative
+            basic
+            onClick={() => {
+              history.push("/");
+            }}
+          >
+            Abbrechen
+          </Button>
+        </>
+      )}
+      {globalMeal && (
+        <>
+          <CategoryForm mealId={globalMeal.id} />
+          <br />
+          <Button
+            positive
+            onClick={() => history.push("/meals/" + globalMeal.id)}
+          >
+            Fertig
+          </Button>
+        </>
+      )}
+    </Container>
   );
 }

@@ -32,6 +32,7 @@ export default function LoginForm() {
           <Form.Input
             label="E-Mail"
             type="text"
+            placeholder="Ihre E-Mail-Adresse"
             value={loginData.email}
             name="email"
             onChange={changeForm}
@@ -39,15 +40,24 @@ export default function LoginForm() {
           <Form.Input
             label="Password"
             type="password"
+            placeholder="Ihr passwort"
             value={loginData.password}
             name="password"
             onChange={changeForm}
           />
-          <Button type="button" positive onClick={login}>
+          <Form.Button fluid type="button" positive onClick={login}>
             Login
-          </Button>
+          </Form.Button>
         </Form>
       </Segment>
+      <Message info>
+        {" "}
+        Können wir Ihnen weiterhelfen? Einfach eine E-Mail an{" "}
+        <a href="mailto:moin@studierendenfutter.de">
+          moin@studierendenfutter.de
+        </a>{" "}
+        schicken.{" "}
+      </Message>
     </div>
   );
 }

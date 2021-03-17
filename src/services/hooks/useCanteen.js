@@ -5,8 +5,9 @@ export default function useCanteen() {
   const [canteen, setCanteen] = useState();
 
   async function fetchData() {
-    const _meal = await fetchCanteen();
-    setCanteen(_meal);
+    const _canteen = await fetchCanteen();
+    console.log(_canteen.canteen);
+    setCanteen(_canteen.canteen);
   }
 
   useEffect(() => {
