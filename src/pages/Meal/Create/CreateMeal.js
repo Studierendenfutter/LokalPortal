@@ -35,7 +35,7 @@ export default function CreateMeal() {
           <Message info>
             Tragen Sie den Namen und Preis des Gerichtes ein. Wählen Sie das
             Datum aus an dem das Gericht erscheinen soll und klicken Sie
-            anschließend auf "Erstellen".
+            anschließend auf "Weiter".
           </Message>
           <MealForm meal={meal} setMeal={setMeal} />
           <br />

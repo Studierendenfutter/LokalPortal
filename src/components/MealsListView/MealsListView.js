@@ -39,7 +39,9 @@ export default function MealsListView({ meals }) {
               day: "numeric",
             })}
           </Table.Cell>,
-          <Table.Cell>{formatPrice(meal.prices[0].price)} €</Table.Cell>,
+          <Table.Cell>
+            <nobr>{formatPrice(meal.prices[0].price)} €</nobr>
+          </Table.Cell>,
           <Table.Cell collapsing>
             {meal.types.map((type) => (
               <img
@@ -77,7 +79,7 @@ export default function MealsListView({ meals }) {
           }}
           setUpdateReady={setMealToBeDeleted}
           header="Gericht löschen"
-          text={`Sind Sie sicher, dass sie "${mealToBeDeleted.name}" löschen wollen?`}
+          text={`Sind Sie sicher, dass Sie "${mealToBeDeleted.name}" löschen wollen?`}
           icon="trash"
         />
       )}
