@@ -33,14 +33,14 @@ export default function CreateMeal() {
       {!globalMeal && (
         <>
           <Message info>
-            Tragen Sie den Namen und Preis des Gerichtes ein. Wählen sie das
-            Datum aus an dem das Gericht erscheinen soll und klicken sie
+            Tragen Sie den Namen und Preis des Gerichtes ein. Wählen Sie das
+            Datum aus an dem das Gericht erscheinen soll und klicken Sie
             anschließend auf "Erstellen".
           </Message>
           <MealForm meal={meal} setMeal={setMeal} />
           <br />
           <Button icon="send" positive onClick={createMeal}>
-            Gericht Erstellen
+            Weiter
           </Button>
           <Button
             icon="send"
@@ -58,10 +58,7 @@ export default function CreateMeal() {
         <>
           <CategoryForm mealId={globalMeal.id} />
           <br />
-          <Button
-            positive
-            onClick={() => history.push("/meals/" + globalMeal.id)}
-          >
+          <Button positive onClick={() => history.push("/")}>
             Fertig
           </Button>
         </>

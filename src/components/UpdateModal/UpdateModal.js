@@ -20,7 +20,7 @@ export default function UpdateModal({
       </Modal.Content>
       <Modal.Actions>
         <Button basic color="red" inverted onClick={() => setUpdateReady()}>
-          <Icon name="remove" /> No
+          <Icon name="remove" /> Nein
         </Button>
         <Button
           color="green"
@@ -30,7 +30,7 @@ export default function UpdateModal({
             setUpdateReady();
           }}
         >
-          <Icon name="checkmark" /> Yes
+          <Icon name="checkmark" /> Ja
         </Button>
       </Modal.Actions>
     </Modal>

@@ -13,7 +13,7 @@ export default function PatchMeal() {
 
   return (
     <Container>
-      <Header size="large">Gericht Bearbeiten</Header>
+      <Header size="large">Gericht bearbeiten</Header>
       <MealForm meal={meal} setMeal={setMeal} />
       <br />
       <CategoryForm mealId={mealId} />

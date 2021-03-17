@@ -9,7 +9,7 @@ export default function Container({ children }) {
         alignItems: "center",
       }}
     >
-      <div style={{ maxWidth: "500px" }}>{children}</div>
+      <div style={{ maxWidth: "500px", width: "100%" }}>{children}</div>
     </div>
   );
 }
