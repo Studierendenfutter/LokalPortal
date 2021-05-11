@@ -8,26 +8,36 @@ import CreateMeal from "./pages/Meal/Create";
 import PatchMeal from "./pages/Meal/Patch";
 import Navbar from "./components/Navbar";
 import "semantic-ui-css/semantic.min.css";
+import Meals from "./pages/Meals";
+import Settings from "./pages/Settings";
 
-const App = () => (
-  <React.StrictMode>
-    <Router>
-      <Navbar>
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route exact path="/meals/create">
-            <CreateMeal />
-          </Route>
-          <Route exact path="/meals/:mealId">
-            <PatchMeal />
-          </Route>
-        </Switch>
-      </Navbar>
-    </Router>
-  </React.StrictMode>
-);
+const App = () => {
+  return (
+    <React.StrictMode>
+      <Router>
+        <Navbar>
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route exact path="/meals">
+              <Meals />
+            </Route>
+            <Route exact path="/meals/create">
+              <CreateMeal />
+            </Route>
+            <Route exact path="/meals/:mealId">
+              <PatchMeal />
+            </Route>
+            <Route exact path="/settings">
+              <Settings />
+            </Route>
+          </Switch>
+        </Navbar>
+      </Router>
+    </React.StrictMode>
+  );
+};
 
 const rootElement = document.getElementById("root");
 if (rootElement.hasChildNodes()) {

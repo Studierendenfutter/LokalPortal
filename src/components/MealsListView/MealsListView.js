@@ -51,10 +51,10 @@ export default function MealsListView({ meals }) {
               />
             ))}
           </Table.Cell>,
-          <Table.Cell collapsing>
+          <Table.Cell>
             <div>
               <Button as={Link} to={`/meals/${meal.id}`} icon primary>
-                <Icon name="edit" />
+                <Icon name="pencil" />
                 Bearbeiten
               </Button>
               <Button
@@ -63,7 +63,7 @@ export default function MealsListView({ meals }) {
                 icon
                 negative
               >
-                <Icon name="trash" />
+                <Icon name="trash alternate outline" />
                 Löschen
               </Button>
             </div>

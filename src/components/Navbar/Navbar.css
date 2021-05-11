@@ -1,11 +1,11 @@
 .sf-canteen-user-topbar {
   position: fixed;
   top: 0;
-  height: 70px;
-  width: 100%;
+  height: 100%;
+  width: 70px;
   z-index: 20;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   padding: 1.5em;
@@ -14,7 +14,7 @@
 }
 
 .sf-canteen-user-content {
-  margin-top: 70px;
+  margin-left: 80px;
   padding: 1em;
 }
 
@@ -32,4 +32,31 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+}
+
+.sf-canteen-user-topbar-button-active > i.icon {
+  color: #094249 !important;
+}
+
+.sf-canteen-user-topbar-button > i.icon {
+  color: #fffcdc !important;
+}
+
+.sf-canteen-user-topbar-button-active {
+  background: #fffcdc !important;
+  margin-bottom: 20px !important;
+}
+
+.sf-canteen-user-topbar-button {
+  background: #094249 !important;
+  margin-bottom: 20px !important;
+}
+
+.sf-canteen-user-top-area {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
