@@ -11,6 +11,8 @@ import "semantic-ui-css/semantic.min.css";
 import Meals from "./pages/Meals";
 import Settings from "./pages/Settings";
 
+import "semantic-ui-less/semantic.less";
+
 const App = () => {
   return (
     <React.StrictMode>

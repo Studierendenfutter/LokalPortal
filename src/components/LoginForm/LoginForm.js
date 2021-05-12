@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Header, Button, Segment, Message } from "semantic-ui-react";
+import { Form, Message } from "semantic-ui-react";
 import postCanteenUserLogin from "../../services/backend/postCanteenUserLogin";
 
 export default function LoginForm() {
@@ -21,36 +21,35 @@ export default function LoginForm() {
 
   return (
     <div>
-      <Segment>
-        <Form>
-          <Header>Login</Header>
-          {showErrorMessage && (
-            <Message negative>
-              Bitte versuche Sie eine andere E-Mail oder ein anderes Password .
-            </Message>
-          )}
-          <Form.Input
-            label="E-Mail"
-            type="text"
-            placeholder="Ihre E-Mail-Adresse"
-            value={loginData.email}
-            name="email"
-            onChange={changeForm}
-          />
-          <Form.Input
-            label="Password"
-            type="password"
-            placeholder="Ihr passwort"
-            value={loginData.password}
-            name="password"
-            onChange={changeForm}
-          />
-          <Form.Button fluid type="button" positive onClick={login}>
-            Login
-          </Form.Button>
-        </Form>
-      </Segment>
-      <Message info>
+      <Form onSubmit={login}>
+        <h2>Login</h2>
+        <p>Geben Sie Ihre E-Mail und Ihr Passwort an.</p>
+        {showErrorMessage && (
+          <Message negative>
+            Bitte versuche Sie eine andere E-Mail oder ein anderes Password .
+          </Message>
+        )}
+        <Form.Input
+          label="E-Mail"
+          type="text"
+          placeholder="Ihre E-Mail-Adresse"
+          value={loginData.email}
+          name="email"
+          onChange={changeForm}
+        />
+        <Form.Input
+          label="Password"
+          type="password"
+          placeholder="Ihr passwort"
+          value={loginData.password}
+          name="password"
+          onChange={changeForm}
+        />
+        <Form.Button fluid type="submit" positive>
+          Login
+        </Form.Button>
+      </Form>
+      <Message>
         {" "}
         Können wir Ihnen weiterhelfen? Einfach eine E-Mail an{" "}
         <a href="mailto:moin@studierendenfutter.de">

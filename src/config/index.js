@@ -6,7 +6,7 @@ const production = {
   BACKEND_URL: "https://api.studierendenfutter.de",
 };
 
-let config = production;
+let config = local;
 
 if (process.env.NODE_ENV === "production") {
   config = production;

@@ -1,0 +1,19 @@
+.sf-canteen-user-settings-page {
+  color: #707070;
+}
+
+.sf-canteen-user-settings-table {
+  margin: 4em 0;
+}
+
+.sf-canteen-user-settings-table td {
+  padding-bottom: 3em;
+}
+
+.sf-canteen-user-settings-table-data-label {
+  padding-right: 1em;
+}
+
+.sf-canteen-user-settings-table-data-explanation {
+  color: #51bc51;
+}

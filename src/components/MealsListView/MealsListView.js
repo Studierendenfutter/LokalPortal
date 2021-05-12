@@ -14,13 +14,6 @@ export default function MealsListView({ meals }) {
 
   return (
     <div>
-      <Button
-        icon="add"
-        as={Link}
-        to={"/meals/create"}
-        positive
-        content="Gericht hinzufügen"
-      />
       <TableWrapper
         columnNames={[
           "Gericht",
@@ -84,11 +77,15 @@ export default function MealsListView({ meals }) {
         />
       )}
       {meals && meals.length === 0 && (
-        <p>
-          Sie haben noch keine Gerichte eingetragen.{" "}
-          <Link to="/meals/create">Jetzt loslegen.</Link>
-        </p>
+        <p>Sie haben noch keine Gerichte eingetragen.</p>
       )}
+      <Button
+        icon="add"
+        as={Link}
+        to={"/meals/create"}
+        primary
+        content="Gericht hinzufügen"
+      />
     </div>
   );
 }

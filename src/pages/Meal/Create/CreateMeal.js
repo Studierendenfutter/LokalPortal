@@ -39,18 +39,17 @@ export default function CreateMeal() {
           </Message>
           <MealForm meal={meal} setMeal={setMeal} />
           <br />
-          <Button icon="send" positive onClick={createMeal}>
-            Weiter
-          </Button>
           <Button
             icon="send"
             negative
-            basic
             onClick={() => {
               history.push("/");
             }}
           >
             Abbrechen
+          </Button>
+          <Button icon="send" positive onClick={createMeal}>
+            Weiter
           </Button>
         </>
       )}
