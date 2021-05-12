@@ -5,29 +5,21 @@ import useAuthToken from "../../services/hooks/useAuthToken";
 
 import "./Navbar.css";
 
-/*
-
-<Link to="/" color="white">
-          <div className="sf-canteen-user-topbar-left">
-            <img
-              src="https://studierendenfutter.de/wp-content/uploads/2021/02/Header-Desktop-s.png"
-              alt="Kochmütze über gekreuzten Messer und Gabel"
-              className="sf-canteen-user-topbar-img"
-            />
-          </div>
-        </Link>
-        */
-
 export default function Navbar({ children }) {
   const history = useHistory();
   const [authToken] = useAuthToken();
   const location = useLocation();
-  console.log(location);
 
   return (
-    <div>
+    <div
+      className={`${
+        authToken
+          ? "sf-canteen-user-topbar-logged-in"
+          : "sf-canteen-user-topbar-logged-out"
+      }`}
+    >
       <div className="sf-canteen-user-topbar">
-        <div>
+        <div className="sf-canteen-user-tobar-buttons">
           <Button
             circular
             size="big"
@@ -77,6 +69,7 @@ export default function Navbar({ children }) {
             }
           ></Button>
         </div>
+        <div className="sf-canteen-user-topbar-img"></div>
       </div>
       <div className="sf-canteen-user-content">
         <div className="sf-canteen-user-top-area">
@@ -89,9 +82,6 @@ export default function Navbar({ children }) {
           </div>
           {authToken ? (
             <div>
-              <Button inverted color="white" onClick={() => history.push("/")}>
-                Übersicht
-              </Button>
               <Button
                 inverted
                 color="red"
