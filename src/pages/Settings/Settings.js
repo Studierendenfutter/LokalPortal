@@ -9,6 +9,7 @@ export default function () {
   const [canteen] = useCanteen();
   const [canteenUser, updateCanteenUser] = useCanteenUser();
   const [email, setEmail] = useState();
+
   const [password, setPassword] = useState();
   const [passwordCheck, setPasswordCheck] = useState();
   const [passwordEqual, setPasswordEqual] = useState(true);
