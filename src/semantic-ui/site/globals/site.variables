@@ -3,6 +3,10 @@
 *******************************/
 
 @primaryColor: #094249;
-@pageBackground: #eff0f1;
+@pageBackground: #fff;
 @negativeColor: #fe4a00;
 @positiveColor: #51bc51;
+
+@green: #51bc51;
+
+@stepTitleColor: @primaryColor

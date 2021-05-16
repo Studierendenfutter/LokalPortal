@@ -16,7 +16,7 @@ export default function Home() {
   return (
     <div className="sf-canteen-user-page">
       <h1>Meine Gerichte heute im Lunchletter</h1>
-      <p>
+      <p className="sf-canteen-user-page-date">
         {new Date().toLocaleDateString("de-DE", {
           weekday: "long",
           year: "numeric",

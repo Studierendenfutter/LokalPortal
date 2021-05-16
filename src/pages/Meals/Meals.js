@@ -16,7 +16,7 @@ export default function Meals() {
   return (
     <div className="sf-canteen-user-page">
       <h1>Alle Gerichte</h1>
-      <p>
+      <p className="sf-canteen-user-meals-date">
         {new Date().toLocaleDateString("de-DE", {
           weekday: "long",
           year: "numeric",
@@ -53,7 +53,10 @@ export default function Meals() {
         <CanteenOverview filter={(meal) => new Date(meal.date) > new Date()} />
       )}
       {tab === "past" && (
-        <CanteenOverview filter={(meal) => new Date(meal.date) < new Date()} />
+        <CanteenOverview
+          filter={(meal) => new Date(meal.date) < new Date()}
+          past={true}
+        />
       )}
     </div>
   );

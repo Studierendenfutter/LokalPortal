@@ -16,15 +16,16 @@ export default function useMealHasMealTypes(id) {
     /* eslint-disable */
   }, []);
 
-  async function createPrice(price) {
-    await postMealHasMealType(id, price);
+  async function createMealHasMealType(typeId) {
+    console.log(typeId);
+    await postMealHasMealType(id, { meal_type_id: typeId });
     await fetchData();
   }
 
-  async function removePrice(priceId) {
-    await deleteMealHasMealType(id, priceId);
+  async function removeMealHasMealType(typeId) {
+    await deleteMealHasMealType(id, typeId);
     await fetchData();
   }
 
-  return [mealHasMealTypes, createPrice, removePrice];
+  return [mealHasMealTypes, createMealHasMealType, removeMealHasMealType];
 }

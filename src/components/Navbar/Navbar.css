@@ -11,33 +11,36 @@
   padding: 1.5em;
   background: #094249;
   color: white;
-  transition: width 3s;
 }
 
 .sf-canteen-user-topbar-logged-out > .sf-canteen-user-topbar {
-  width: 50%;
+  width: 40%;
   padding: 0;
 }
 
-.sf-canteen-user-topbar-logged-out .sf-canteen-user-tobar-buttons {
+.sf-canteen-user-topbar-logged-out .sf-canteen-user-topbar-buttons {
   display: none;
+}
+
+.sf-canteen-user-topbar-buttons > button.ui.button {
+  margin-top: 25px;
 }
 
 .sf-canteen-user-topbar-logged-out .sf-canteen-user-topbar-img {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background-image: url("https://studierendenfutter.de/wp-content/uploads/2021/05/mein.studierendenfutter-Login.jpg");
+  background-image: url("https://studierendenfutter.de/wp-content/uploads/2021/05/mein.studierendenfutter-Login-Medium.jpg");
   background-position: center;
   background-size: cover;
 }
 
-.sf-canteen-user-topbar-logged-in .sf-canteen-user-tobar-img {
+.sf-canteen-user-topbar-logged-in .sf-canteen-user-topbar-img {
   display: none;
 }
 
 .sf-canteen-user-topbar-logged-out > .sf-canteen-user-content {
-  margin-left: 50%;
+  margin-left: 40%;
 }
 
 .sf-canteen-user-content {
@@ -109,7 +112,7 @@
 
   .sf-canteen-user-topbar-logged-in
     .sf-canteen-user-topbar
-    .sf-canteen-user-tobar-buttons {
+    .sf-canteen-user-topbar-buttons {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -118,5 +121,9 @@
 
   .sf-canteen-user-topbar-button {
     margin-bottom: 0;
+  }
+
+  .sf-canteen-user-topbar-buttons > button.ui.button {
+    margin-top: 0px;
   }
 }

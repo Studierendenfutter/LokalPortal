@@ -9,110 +9,114 @@ export default function Navbar({ children }) {
   const history = useHistory();
   const [authToken] = useAuthToken();
   const location = useLocation();
-
+  const loggedIn = typeof authToken !== "undefined";
   return (
     <div
       className={`${
-        authToken
+        loggedIn
           ? "sf-canteen-user-topbar-logged-in"
           : "sf-canteen-user-topbar-logged-out"
       }`}
     >
       <div className="sf-canteen-user-topbar">
-        <div className="sf-canteen-user-tobar-buttons">
-          <Popup
-            content="Start"
-            inverted
-            basic
-            position="right center"
-            trigger={
-              <Button
-                circular
-                size="big"
-                icon="home"
-                onClick={() => history.push("/")}
-                className={
-                  location.pathname === "/"
-                    ? "sf-canteen-user-topbar-button-active"
-                    : "sf-canteen-user-topbar-button"
-                }
-              />
-            }
-          />
-          <Popup
-            content="Gerichte"
-            inverted
-            basic
-            position="right center"
-            trigger={
-              <Button
-                circular
-                size="big"
-                icon="list"
-                onClick={() => history.push("/meals")}
-                className={
-                  location.pathname === "/meals"
-                    ? "sf-canteen-user-topbar-button-active"
-                    : "sf-canteen-user-topbar-button"
-                }
-              ></Button>
-            }
-          />
-          <Popup
-            content="Gericht anlegen"
-            inverted
-            basic
-            position="right center"
-            trigger={
-              <Button
-                circular
-                size="big"
-                icon="plus"
-                onClick={() => history.push("/meals/create")}
-                className={
-                  location.pathname === "/meals/create"
-                    ? "sf-canteen-user-topbar-button-active"
-                    : "sf-canteen-user-topbar-button"
-                }
-              ></Button>
-            }
-          />
-          <Popup
-            content="Einstellungen"
-            inverted
-            basic
-            position="right center"
-            trigger={
-              <Button
-                circular
-                size="big"
-                icon="setting"
-                onClick={() => history.push("/settings")}
-                className={
-                  location.pathname === "/settings"
-                    ? "sf-canteen-user-topbar-button-active"
-                    : "sf-canteen-user-topbar-button"
-                }
-              ></Button>
-            }
-          />
-        </div>
-        <div className="sf-canteen-user-topbar-img"></div>
+        {loggedIn ? (
+          <div className="sf-canteen-user-topbar-buttons">
+            <Popup
+              content="Start"
+              inverted
+              basic
+              position="right center"
+              trigger={
+                <Button
+                  circular
+                  size="big"
+                  icon="home"
+                  onClick={() => history.push("/")}
+                  className={
+                    location.pathname === "/"
+                      ? "sf-canteen-user-topbar-button-active"
+                      : "sf-canteen-user-topbar-button"
+                  }
+                />
+              }
+            />
+            <Popup
+              content="Gerichte"
+              inverted
+              basic
+              position="right center"
+              trigger={
+                <Button
+                  circular
+                  size="big"
+                  icon="list"
+                  onClick={() => history.push("/meals")}
+                  className={
+                    location.pathname === "/meals"
+                      ? "sf-canteen-user-topbar-button-active"
+                      : "sf-canteen-user-topbar-button"
+                  }
+                ></Button>
+              }
+            />
+            <Popup
+              content="Gericht anlegen"
+              inverted
+              basic
+              position="right center"
+              trigger={
+                <Button
+                  circular
+                  size="big"
+                  icon="plus"
+                  onClick={() => history.push("/meals/create")}
+                  className={
+                    location.pathname === "/meals/create"
+                      ? "sf-canteen-user-topbar-button-active"
+                      : "sf-canteen-user-topbar-button"
+                  }
+                ></Button>
+              }
+            />
+            <Popup
+              content="Einstellungen"
+              inverted
+              basic
+              position="right center"
+              trigger={
+                <Button
+                  circular
+                  size="big"
+                  icon="setting"
+                  onClick={() => history.push("/settings")}
+                  className={
+                    location.pathname === "/settings"
+                      ? "sf-canteen-user-topbar-button-active"
+                      : "sf-canteen-user-topbar-button"
+                  }
+                ></Button>
+              }
+            />
+          </div>
+        ) : (
+          <div className="sf-canteen-user-topbar-img"></div>
+        )}
       </div>
       <div className="sf-canteen-user-content">
         <div className="sf-canteen-user-top-area">
           <div>
             <img
-              src="https://studierendenfutter.de/wp-content/uploads/2021/05/Logo-mein-Studierendenfutter-DUNKEL-transparent-Small.png"
+              src="https://studierendenfutter.de/wp-content/uploads/2021/05/Logo-mein-Studierendenfutter-DUNKEL-transparent-Large.png"
               height="70"
               alt="Mein Studierendenfutter"
             />
           </div>
-          {authToken ? (
+          {loggedIn ? (
             <div>
               <Button
                 inverted
-                color="red"
+                negative
+                basic
                 onClick={() => {
                   window.localStorage.removeItem("authToken");
                   history.push("/");

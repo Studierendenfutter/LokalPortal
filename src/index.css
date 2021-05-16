@@ -16,7 +16,7 @@ body a[href] {
   color: #fe4a00;
 }
 
-code {
+body code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }

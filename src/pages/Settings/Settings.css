@@ -8,6 +8,8 @@
 
 .sf-canteen-user-settings-table td {
   padding-bottom: 3em;
+  padding-right: 3em;
+  vertical-align: top;
 }
 
 .sf-canteen-user-settings-table-data-label {

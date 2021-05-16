@@ -26,7 +26,6 @@
     "build": "craco build",
     "test": "craco test",
     "eject": "craco eject",
-    "postbuild": "react-snap",
     "predeploy": "yarn build && cp build/index.html build/404.html",
     "deploy": "gh-pages -d build"
   },

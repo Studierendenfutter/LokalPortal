@@ -5,8 +5,13 @@ import TableWrapper from "../TableWrapper";
 import deleteMeal from "../../services/backend/deleteMeal";
 import UpdateModal from "../UpdateModal/UpdateModal";
 import formatPrice from "../../services/utils/formatPrice";
+import formatDate from "../../services/utils/formatDate";
 
-export default function MealsListView({ meals }) {
+export default function MealsListView({
+  meals,
+  past = false,
+  present = false,
+}) {
   const [mealToBeDeleted, setMealToBeDeleted] = useState();
   if (!meals) {
     return null;
@@ -17,23 +22,23 @@ export default function MealsListView({ meals }) {
       <TableWrapper
         columnNames={[
           "Gericht",
-          "Erscheint am",
-          "Preis",
+          past ? "Erschien am" : "Erscheint am",
+          "Preise",
           "Kategorien",
           "Aktion",
         ]}
         content={meals.map((meal) => [
           <Table.Cell>{meal.name}</Table.Cell>,
           <Table.Cell>
-            {new Date(Date.parse(meal.date)).toLocaleDateString("de-DE", {
-              weekday: "long",
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })}
+            {formatDate(new Date(Date.parse(meal.date)))}
           </Table.Cell>,
           <Table.Cell>
-            <nobr>{formatPrice(meal.prices[0].price)} €</nobr>
+            <nobr>- Studierende: {formatPrice(meal.prices[0].price)} €</nobr>
+            <br />
+            <nobr>- Beschäftigte: {formatPrice(meal.prices[0].price)} €</nobr>
+            <br />
+            <nobr>- Sonstige: {formatPrice(meal.prices[0].price)} €</nobr>
+            <br />
           </Table.Cell>,
           <Table.Cell collapsing>
             {meal.types.map((type) => (
@@ -46,19 +51,20 @@ export default function MealsListView({ meals }) {
           </Table.Cell>,
           <Table.Cell>
             <div>
-              <Button as={Link} to={`/meals/${meal.id}`} icon primary>
-                <Icon name="pencil" />
-                Bearbeiten
-              </Button>
+              <Button
+                as={Link}
+                to={`/meals/${meal.id}`}
+                icon="pencil"
+                primary
+                content="Bearbeiten"
+              />
               <Button
                 as={Button}
                 onClick={() => setMealToBeDeleted(meal)}
-                icon
+                icon="trash alternate outline"
                 negative
-              >
-                <Icon name="trash alternate outline" />
-                Löschen
-              </Button>
+                content="Löschen"
+              />
             </div>
           </Table.Cell>,
         ])}

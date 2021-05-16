@@ -53,7 +53,7 @@ export default function MealForm({ meal, setMeal }) {
         />
       </Form.Field>
       <Form.Field>
-        <label>Datum</label>
+        <label>Erscheint am</label>
         <Form.Input
           value={new Date(Date.parse(localMeal.date))}
           selected={new Date(Date.parse(localMeal.date))}
@@ -68,9 +68,6 @@ export default function MealForm({ meal, setMeal }) {
           }}
           icon="euro sign"
         />
-        <Label pointing="left" color="blue">
-          An diesem Datum erscheint das Gericht.
-        </Label>
       </Form.Field>
     </Form>
   );
