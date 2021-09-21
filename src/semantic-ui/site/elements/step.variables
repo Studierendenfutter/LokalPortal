@@ -1,7 +1,3 @@
 /*******************************
     User Variable Overrides
 *******************************/
-
-@titleColor: @positiveColor;
-
-@completedColor: @positiveColor;

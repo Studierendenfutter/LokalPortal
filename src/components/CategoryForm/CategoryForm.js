@@ -1,5 +1,5 @@
 import React from "react";
-import { Header, Message } from "semantic-ui-react";
+import { Header, Message, Popup } from "semantic-ui-react";
 
 import "./CategoryForm.css";
 import {
@@ -28,24 +28,32 @@ export default function CategoryForm({
           false
         );
         return (
-          <button
-            className="sf-canteen-user-category-button"
-            onClick={() =>
-              selected
-                ? deleteMealHasMealType(mealType)
-                : createMealHasMealType(mealType)
+          <Popup
+            content={mealTypesTranslations[mealType]}
+            inverted
+            basic
+            position="right center"
+            trigger={
+              <button
+                className="sf-canteen-user-category-button"
+                onClick={() =>
+                  selected
+                    ? deleteMealHasMealType(mealType)
+                    : createMealHasMealType(mealType)
+                }
+              >
+                <img
+                  src={
+                    selected
+                      ? mealTypesImageSrc[mealType][0]
+                      : mealTypesImageSrc[mealType][1]
+                  }
+                  alt={mealTypesTranslations[mealType]}
+                  height="50"
+                />
+              </button>
             }
-          >
-            <img
-              src={
-                selected
-                  ? mealTypesImageSrc[mealType][0]
-                  : mealTypesImageSrc[mealType][1]
-              }
-              alt={mealTypesTranslations[mealType]}
-              height="50"
-            />
-          </button>
+          />
         );
       })}
     </div>

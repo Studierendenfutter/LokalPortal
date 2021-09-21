@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Form, Input, Label } from "semantic-ui-react";
+import { Form } from "semantic-ui-react";
 import DatePicker, { registerLocale } from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
@@ -19,12 +19,8 @@ export default function MealForm({ meal, setMeal }) {
   }
 
   const handleMealUpdate = () => {
-    let price = parseFloat((localMeal.price + "").replace(",", ".")).toString();
-    if (isNaN(price)) {
-      price = "";
-    }
-    setLocalMeal({ ...localMeal, price });
-    setMeal({ ...localMeal, price });
+    setLocalMeal({ ...localMeal });
+    setMeal({ ...localMeal });
   };
 
   const handleFormChange = ({ target: { name, value } }) => {
@@ -41,17 +37,6 @@ export default function MealForm({ meal, setMeal }) {
         onChange={handleFormChange}
         onBlur={handleMealUpdate}
       />
-      <Form.Field>
-        <label>Preis</label>
-        <Input
-          value={localMeal.price}
-          name="price"
-          placeholder="Welchen Preis hat Ihr Gericht?"
-          onChange={handleFormChange}
-          onBlur={handleMealUpdate}
-          icon="euro"
-        />
-      </Form.Field>
       <Form.Field>
         <label>Erscheint am</label>
         <Form.Input

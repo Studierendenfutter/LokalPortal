@@ -7,7 +7,6 @@ import Home from "./pages/Home";
 import CreateMeal from "./pages/Meal/Create";
 import PatchMeal from "./pages/Meal/Patch";
 import Navbar from "./components/Navbar";
-import "semantic-ui-css/semantic.min.css";
 import Meals from "./pages/Meals";
 import Settings from "./pages/Settings";
 

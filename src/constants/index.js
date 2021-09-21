@@ -16,7 +16,7 @@ export const mealTypes = [
 
 export const prices = {
   students: "Preis für Studierende",
-  employees: "Preis für Beschäftigte der Universität",
+  employees: "Preis für Beschäftigte",
   other: "Preis für Nichtstudierende",
 };
 

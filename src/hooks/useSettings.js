@@ -18,7 +18,6 @@ export default function useSettings(uId, code) {
 
   const updateSettings = (updatedSettings) => {
     async function update() {
-      console.log(updatedSettings);
       await putUserSettings({ userId: uId, code }, updatedSettings);
     }
     update();

@@ -50,11 +50,25 @@ export default function Meals() {
         />
       )}
       {tab === "planned" && (
-        <CanteenOverview filter={(meal) => new Date(meal.date) > new Date()} />
+        <CanteenOverview
+          filter={(meal) => {
+            let mealDate = new Date(meal.date);
+            mealDate.setHours(0, 0, 0, 0);
+            let now = new Date();
+            now.setHours(0, 0, 0, 0);
+            return mealDate > now;
+          }}
+        />
       )}
       {tab === "past" && (
         <CanteenOverview
-          filter={(meal) => new Date(meal.date) < new Date()}
+          filter={(meal) => {
+            let mealDate = new Date(meal.date);
+            mealDate.setHours(0, 0, 0, 0);
+            let now = new Date();
+            now.setHours(0, 0, 0, 0);
+            return mealDate < now;
+          }}
           past={true}
         />
       )}

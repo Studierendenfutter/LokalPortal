@@ -4,7 +4,7 @@ import config from "../../config";
 
 const url = config.BACKEND_URL + "/canteenUsers/login";
 
-export default async function postAdminLogin(data) {
+export default async function postCanteenUserLogin(data) {
   try {
     const response = await Axios.post(url, data);
     window.localStorage.setItem(

@@ -1,17 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Button, Icon, Table } from "semantic-ui-react";
+import { Button, Table } from "semantic-ui-react";
 import TableWrapper from "../TableWrapper";
 import deleteMeal from "../../services/backend/deleteMeal";
 import UpdateModal from "../UpdateModal/UpdateModal";
 import formatPrice from "../../services/utils/formatPrice";
 import formatDate from "../../services/utils/formatDate";
 
-export default function MealsListView({
-  meals,
-  past = false,
-  present = false,
-}) {
+export default function MealsListView({ meals, past = false }) {
   const [mealToBeDeleted, setMealToBeDeleted] = useState();
   if (!meals) {
     return null;
@@ -35,9 +31,9 @@ export default function MealsListView({
           <Table.Cell>
             <nobr>- Studierende: {formatPrice(meal.prices[0].price)} €</nobr>
             <br />
-            <nobr>- Beschäftigte: {formatPrice(meal.prices[0].price)} €</nobr>
+            <nobr>- Beschäftigte: {formatPrice(meal.prices[1].price)} €</nobr>
             <br />
-            <nobr>- Sonstige: {formatPrice(meal.prices[0].price)} €</nobr>
+            <nobr>- Sonstige: {formatPrice(meal.prices[3].price)} €</nobr>
             <br />
           </Table.Cell>,
           <Table.Cell collapsing>

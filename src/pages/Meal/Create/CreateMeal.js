@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router";
-import { Button, Header, Icon, Message, Step } from "semantic-ui-react";
+import { Button, Icon, Message, Step } from "semantic-ui-react";
 import MealForm from "../../../components/MealForm/MealForm";
 import getDateString from "../../../services/utils/getDateString";
 import postMeal from "../../../services/backend/postMeal";
+import postPrice from "../../../services/backend/postPrice";
 import postMealHasMealType from "../../../services/backend/postMealHasMealType";
 import useCanteen from "../../../services/hooks/useCanteen";
 import CategoryForm from "../../../components/CategoryForm/CategoryForm";
@@ -16,14 +17,20 @@ import {
 } from "../../../constants";
 
 import "./CreateMeal.css";
+import MealPriceForm from "../../../components/MealPriceForm/MealPriceForm";
 
 export default function CreateMeal() {
   const history = useHistory();
   const [meal, setMeal] = useState({
     name: "",
     date: getDateString(),
-    price: "",
   });
+  const [mealPrices, setMealPrices] = useState([
+    { user_category_id: 1 },
+    { user_category_id: 2 },
+    { user_category_id: 3 },
+    { user_category_id: 4 },
+  ]);
 
   const [step, setStep] = useState(0);
   const [canteen] = useCanteen();
@@ -32,16 +39,18 @@ export default function CreateMeal() {
 
   const createMeal = async () => {
     const _meal = await postMeal({ ...meal, canteen_id: canteen.id });
-    console.log(_meal);
-    for (let mealType in mealTypes) {
-      let mealTypeId = mealTypes[mealType];
-      const x = await postMealHasMealType(_meal.id, {
-        meal_type_id: mealTypeId,
+    for (let i in mealTypes) {
+      await postMealHasMealType(_meal.id, {
+        meal_type_id: mealTypes[i],
       });
-      console.log(x);
+    }
+    for (let i in mealPrices) {
+      await postPrice(_meal.id, mealPrices[i]);
     }
     history.push("/");
   };
+
+  const formFilled = mealPrices[0].price && mealTypes.length > 0;
 
   return (
     <div className="sf-canteen-user-create-meal-page">
@@ -73,12 +82,12 @@ export default function CreateMeal() {
       </Step.Group>
       {step === 0 && (
         <>
-          <Message>
-            Tragen Sie den Namen und Preis des Gerichtes ein. Wählen Sie das
-            Datum aus an dem das Gericht erscheinen soll und klicken Sie
-            anschließend auf "Weiter".
-          </Message>
           <MealForm meal={meal} setMeal={setMeal} />
+          <br />
+          <MealPriceForm
+            mealPrices={mealPrices}
+            setMealPrices={setMealPrices}
+          />
           <br />
           <CategoryForm
             mealHasMealTypes={mealTypes}
@@ -88,15 +97,17 @@ export default function CreateMeal() {
             createMealHasMealType={(id) => setMealTypes([...mealTypes, id])}
           />
           <br />
+          <br />
           <Button
             negative
+            style={{ marginRight: "20px" }}
             onClick={() => {
               history.push("/");
             }}
           >
             Abbrechen
           </Button>
-          <Button positive onClick={() => setStep(1)}>
+          <Button positive onClick={() => setStep(1)} disabled={!formFilled}>
             Weiter
           </Button>
         </>
@@ -108,9 +119,9 @@ export default function CreateMeal() {
           <p>Erscheint am {formatDate(new Date(meal.date))}</p>
           <p>
             Preise:
-            <br />- Studierende: {meal.price} €
-            <br />- Beschäftigte: {meal.price} €
-            <br />- Sonstige: {meal.price} €
+            <br />- Studierende: {mealPrices[0].price} €
+            <br />- Beschäftigte: {mealPrices[1].price} €
+            <br />- Sonstige: {mealPrices[3].price} €
           </p>
           <p>Kategorien:</p>
 
@@ -121,6 +132,7 @@ export default function CreateMeal() {
             );
             return (
               <img
+                key={mealType}
                 src={
                   selected
                     ? mealTypesImageSrc[mealType][0]
@@ -135,6 +147,7 @@ export default function CreateMeal() {
           <br />
           <Button
             negative
+            style={{ marginRight: "20px" }}
             onClick={() => {
               setStep(0);
             }}

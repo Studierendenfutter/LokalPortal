@@ -16,12 +16,12 @@ export default function useMealPrices(id) {
   }, []);
 
   async function createPrice(price) {
-    await postPrice(price);
+    await postPrice(id, price);
     await fetchData();
   }
 
   async function removePrice(priceId) {
-    await deletePrice(priceId);
+    await deletePrice(id, priceId);
     await fetchData();
   }
 

@@ -115,8 +115,7 @@ export default function Navbar({ children }) {
             <div>
               <Button
                 inverted
-                negative
-                basic
+                color="red"
                 onClick={() => {
                   window.localStorage.removeItem("authToken");
                   history.push("/");

@@ -1,55 +1,106 @@
 import React, { useEffect, useState } from "react";
-import { Form } from "semantic-ui-react";
-import useUserCategories from "../../services/hooks/useUserCategories";
+import { Form, Header, Message } from "semantic-ui-react";
 
-export default function MealPriceForm({ mealPrice, setMealPrice }) {
-  const [localMealPrice, setLocalMealPrice] = useState(mealPrice);
-  const userCategories = useUserCategories();
+import "./MealPriceForm.css";
 
+const inputLabels = {
+  1: "für Studenten",
+  2: "für Beschäftigte",
+  4: "für Sonstige",
+};
+
+function parsePrice(price) {
+  if (price === undefined) return;
+  const formatedPrice = parseFloat((price + "").replace(",", "."));
+  if (isNaN(formatedPrice)) {
+    return;
+  }
+  return formatedPrice.toFixed(2);
+}
+
+export default function MealPriceForm({ mealPrices, setMealPrices }) {
+  const [localMealPrices, setLocalMealPrices] = useState(mealPrices);
   useEffect(() => {
-    setLocalMealPrice(mealPrice);
-  }, [mealPrice]);
+    setLocalMealPrices(mealPrices);
+  }, [mealPrices]);
 
-  if (!localMealPrice) {
-    return null;
+  if (!localMealPrices || localMealPrices.length !== 4) {
+    return "";
   }
 
   const handleMealUpdate = () => {
-    setMealPrice(localMealPrice);
-  };
-
-  const handleFormChange = ({ target: { name, value } }) => {
-    setLocalMealPrice({ ...mealPrice, [name]: value });
+    const _mealPrices = [...localMealPrices];
+    for (let i in _mealPrices) {
+      _mealPrices[i] = {
+        ...mealPrices[i],
+        price: parsePrice(_mealPrices[i].price),
+      };
+    }
+    const price = _mealPrices.find((price) => price.price !== undefined);
+    if (price) {
+      for (let i in _mealPrices) {
+        if (_mealPrices[i].price === undefined) {
+          _mealPrices[i] = { ...mealPrices[i], price: price.price };
+        }
+      }
+    }
+    setMealPrices(_mealPrices);
   };
 
   return (
     <Form>
-      <Form.Dropdown
-        placeholder="Select User Category"
-        fluid
-        search
-        selection
-        value={localMealPrice.user_category_id}
-        onChange={(_, { value }) =>
-          handleFormChange({ target: { name: "user_category_id", value } })
+      <Header>Preis</Header>
+      <Message
+        warning
+        visible={
+          !(
+            localMealPrices[0].price ||
+            localMealPrices[1].price ||
+            localMealPrices[3].price
+          )
         }
-        onBlur={handleMealUpdate}
-        label="User Group"
-        options={userCategories.map((user_category) => ({
-          key: user_category.id,
-          value: user_category.id,
-          text: user_category.name,
-        }))}
-      />
+      >
+        Diesem Gericht wurde noch kein Preis hinzugefügt.
+      </Message>
 
-      <Form.Input
-        value={localMealPrice.price}
-        label="Price"
-        name="price"
-        onChange={handleFormChange}
-        onBlur={handleMealUpdate}
-        icon="euro"
-      />
+      <Form.Group widths="equal">
+        {localMealPrices
+          .sort(
+            (firstPrice, secondPrice) =>
+              firstPrice.user_category_id > secondPrice.user_category_id
+          )
+          .map((price, i) => {
+            if (price.user_category_id !== 3)
+              return (
+                <Form.Input
+                  key={price.user_category_id}
+                  className="sf-canteen-user-price-input"
+                  value={
+                    price.price !== undefined
+                      ? price.price
+                      : localMealPrices[0].price ||
+                        localMealPrices[1].price ||
+                        localMealPrices[3].price ||
+                        ""
+                  }
+                  label={inputLabels[price.user_category_id]}
+                  name="price"
+                  onChange={({ target: { value } }) => {
+                    if (value === "") {
+                      value = "0.00";
+                    }
+                    const _mealPrices = [...localMealPrices];
+                    _mealPrices[i] = { ..._mealPrices[i], price: value };
+                    setLocalMealPrices(_mealPrices);
+                  }}
+                  onBlur={handleMealUpdate}
+                  icon="euro"
+                />
+              );
+
+            return "";
+          })}
+      </Form.Group>
     </Form>
   );
 }

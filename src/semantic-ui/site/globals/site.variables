@@ -8,5 +8,3 @@
 @positiveColor: #51bc51;
 
 @green: #51bc51;
-
-@stepTitleColor: @primaryColor

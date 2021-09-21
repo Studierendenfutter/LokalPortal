@@ -26,7 +26,7 @@ export default function LoginForm() {
         <p>Geben Sie Ihre E-Mail und Ihr Passwort an.</p>
         {showErrorMessage && (
           <Message negative>
-            Bitte versuche Sie eine andere E-Mail oder ein anderes Password .
+            Bitte versuche Sie eine andere E-Mail oder ein anderes Passwort.
           </Message>
         )}
         <Form.Input
@@ -35,12 +35,15 @@ export default function LoginForm() {
           placeholder="Ihre E-Mail-Adresse"
           value={loginData.email}
           name="email"
-          onChange={changeForm}
+          onChange={({ target: { value } }) => {
+            const cleanedValue = value.replace(" ", "");
+            setLoginData({ ...loginData, email: cleanedValue });
+          }}
         />
         <Form.Input
-          label="Password"
+          label="Passwort"
           type="password"
-          placeholder="Ihr passwort"
+          placeholder="Ihr Passwort"
           value={loginData.password}
           name="password"
           onChange={changeForm}

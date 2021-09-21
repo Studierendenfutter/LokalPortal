@@ -17,7 +17,6 @@ export default function useMealHasMealTypes(id) {
   }, []);
 
   async function createMealHasMealType(typeId) {
-    console.log(typeId);
     await postMealHasMealType(id, { meal_type_id: typeId });
     await fetchData();
   }
