@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router";
-import { Button, Icon, Message, Step } from "semantic-ui-react";
+import { Button, Icon, Step } from "semantic-ui-react";
 import MealForm from "../../../components/MealForm/MealForm";
 import getDateString from "../../../services/utils/getDateString";
 import postMeal from "../../../services/backend/postMeal";

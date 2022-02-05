@@ -14,13 +14,11 @@ export default function PatchMeal() {
   const { mealId } = useParams();
 
   const [meal, setMeal] = useMeal(mealId);
-  const [
-    mealTypes,
-    createMealType,
-    deleteMealHasMealType,
-  ] = useMealHasMealTypes(mealId);
+  const [mealTypes, createMealType, deleteMealHasMealType] =
+    useMealHasMealTypes(mealId);
 
-  const [mealPrices, createPrice, deletePrice] = useMealPrices(mealId);
+  const [mealPrices, createPrice, deletePrice, refetchPrices] =
+    useMealPrices(mealId);
 
   const updateMealPrices = async (prices) => {
     prices.forEach(async (price) => {
@@ -30,6 +28,7 @@ export default function PatchMeal() {
         price: price.price,
         user_category_id: price.user_category_id,
       });
+      await refetchPrices();
     });
   };
 

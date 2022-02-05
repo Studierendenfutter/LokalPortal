@@ -29,12 +29,14 @@ export default function CategoryForm({
         );
         return (
           <Popup
+            key={mealType}
             content={mealTypesTranslations[mealType]}
             inverted
             basic
             position="right center"
             trigger={
               <button
+                key={mealType}
                 className="sf-canteen-user-category-button"
                 onClick={() =>
                   selected

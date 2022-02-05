@@ -23,7 +23,6 @@ export default function MealPriceForm({ mealPrices, setMealPrices }) {
   useEffect(() => {
     setLocalMealPrices(mealPrices);
   }, [mealPrices]);
-
   if (!localMealPrices || localMealPrices.length !== 4) {
     return "";
   }
