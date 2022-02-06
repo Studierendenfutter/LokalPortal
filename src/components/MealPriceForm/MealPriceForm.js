@@ -64,10 +64,11 @@ export default function MealPriceForm({ mealPrices, setMealPrices }) {
 
       <Form.Group widths="equal">
         {localMealPrices
-          .sort(
-            (firstPrice, secondPrice) =>
-              firstPrice.user_category_id > secondPrice.user_category_id
-          )
+          .sort((firstPrice, secondPrice) => {
+            return firstPrice.user_category_id > secondPrice.user_category_id
+              ? 1
+              : -1;
+          })
           .map((price, i) => {
             if (price.user_category_id !== 3)
               return (

@@ -23,7 +23,6 @@ export default function PatchMeal() {
   const updateMealPrices = async (prices) => {
     prices.forEach(async (price) => {
       await deletePrice(price.id);
-      console.log(price);
       await createPrice({
         price: price.price,
         user_category_id: price.user_category_id,

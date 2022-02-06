@@ -7,7 +7,6 @@ export default function useCanteen() {
 
   async function fetchData() {
     const _canteen = await fetchCanteen();
-    console.log(_canteen.canteen);
     setCanteen(_canteen.canteen);
   }
 
