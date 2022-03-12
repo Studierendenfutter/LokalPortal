@@ -3,9 +3,7 @@ import { useHistory } from "react-router";
 import { Button, Icon, Step } from "semantic-ui-react";
 import MealForm from "../../../components/MealForm/MealForm";
 import getDateString from "../../../services/utils/getDateString";
-import postMeal from "../../../services/backend/postMeal";
-import postPrice from "../../../services/backend/postPrice";
-import postMealHasMealType from "../../../services/backend/postMealHasMealType";
+import createFullMeal from "../../../services/backend/createMeal";
 import useCanteen from "../../../services/hooks/useCanteen";
 import CategoryForm from "../../../components/CategoryForm/CategoryForm";
 import formatDate from "../../../services/utils/formatDate";
@@ -38,15 +36,7 @@ export default function CreateMeal() {
   const [mealTypes, setMealTypes] = useState([]);
 
   const createMeal = async () => {
-    const _meal = await postMeal({ ...meal, canteen_id: canteen.id });
-    for (let i in mealTypes) {
-      await postMealHasMealType(_meal.id, {
-        meal_type_id: mealTypes[i],
-      });
-    }
-    for (let i in mealPrices) {
-      await postPrice(_meal.id, mealPrices[i]);
-    }
+    createFullMeal(meal, canteen.id, mealTypes, mealPrices);
     history.push("/");
   };
 

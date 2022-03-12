@@ -1,14 +1,16 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Button, Table } from "semantic-ui-react";
 import TableWrapper from "../TableWrapper";
 import deleteMeal from "../../services/backend/deleteMeal";
 import UpdateModal from "../UpdateModal/UpdateModal";
 import formatPrice from "../../services/utils/formatPrice";
 import formatDate from "../../services/utils/formatDate";
+import createMeal from "../../services/backend/createMeal";
 
 export default function MealsListView({ meals, past = false }) {
   const [mealToBeDeleted, setMealToBeDeleted] = useState();
+  const history = useHistory();
   if (!meals) {
     return null;
   }
@@ -53,6 +55,24 @@ export default function MealsListView({ meals, past = false }) {
                 icon="pencil"
                 primary
                 content="Bearbeiten"
+              />
+              <Button
+                as={Button}
+                onClick={async () => {
+                  const _meal = await createMeal(
+                    meal,
+                    meal.canteen_id,
+                    meal.types.map((type) => type.meal_type_id),
+                    meal.prices.map((_price, i) => ({
+                      user_category_id: i + 1,
+                      price: _price.price,
+                    }))
+                  );
+                  history.push("/meals/" + _meal.id);
+                }}
+                icon="copy outline"
+                primary
+                content="Dulpizieren"
               />
               <Button
                 as={Button}
