@@ -72,7 +72,7 @@ export default function MealsListView({ meals, past = false }) {
                 }}
                 icon="copy outline"
                 primary
-                content="Dulpizieren"
+                content="Duplizieren"
               />
               <Button
                 as={Button}
