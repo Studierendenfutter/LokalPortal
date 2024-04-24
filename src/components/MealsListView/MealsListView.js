@@ -33,8 +33,6 @@ export default function MealsListView({ meals, past = false }) {
           <Table.Cell>
             <nobr>- Studierende: {formatPrice(meal.prices[0].price)} €</nobr>
             <br />
-            <nobr>- Beschäftigte: {formatPrice(meal.prices[1].price)} €</nobr>
-            <br />
             <nobr>- Sonstige: {formatPrice(meal.prices[3].price)} €</nobr>
             <br />
           </Table.Cell>,

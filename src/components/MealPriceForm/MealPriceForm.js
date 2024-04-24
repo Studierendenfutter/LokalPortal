@@ -70,7 +70,7 @@ export default function MealPriceForm({ mealPrices, setMealPrices }) {
               : -1;
           })
           .map((price, i) => {
-            if (price.user_category_id !== 3)
+            if (price.user_category_id === 1 || price.user_category_id === 4)
               return (
                 <Form.Input
                   key={price.user_category_id}
