@@ -110,7 +110,6 @@ export default function CreateMeal() {
           <p>
             Preise:
             <br />- Studierende: {mealPrices[0].price} €
-            <br />- Beschäftigte: {mealPrices[1].price} €
             <br />- Sonstige: {mealPrices[3].price} €
           </p>
           <p>Kategorien:</p>
